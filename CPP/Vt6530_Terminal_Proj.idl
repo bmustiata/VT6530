@@ -1,0 +1,221 @@
+// Vt6530_Terminal_Proj.idl : IDL source for Vt6530_Terminal_Proj.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (Vt6530_Terminal_Proj.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "olectl.h"
+	
+
+	[
+		object,
+		uuid(EDA1E56F-6F0F-11D4-98C6-000102494781),
+		dual,
+		helpstring("IVt6530Control Interface"),
+		pointer_default(unique)
+	]
+	interface IVt6530Control : IDispatch
+	{
+		[propput, id(DISPID_BACKCOLOR)]
+		HRESULT BackColor([in]OLE_COLOR clr);
+		[propget, id(DISPID_BACKCOLOR)]
+		HRESULT BackColor([out,retval]OLE_COLOR* pclr);
+		[propput, id(DISPID_BORDERCOLOR)]
+		HRESULT BorderColor([in]OLE_COLOR clr);
+		[propget, id(DISPID_BORDERCOLOR)]
+		HRESULT BorderColor([out, retval]OLE_COLOR* pclr);
+		[propput, id(DISPID_BORDERWIDTH)]
+		HRESULT BorderWidth([in]long width);
+		[propget, id(DISPID_BORDERWIDTH)]
+		HRESULT BorderWidth([out, retval]long* width);
+		[propput, id(DISPID_FORECOLOR)]
+		HRESULT ForeColor([in]OLE_COLOR clr);
+		[propget, id(DISPID_FORECOLOR)]
+		HRESULT ForeColor([out,retval]OLE_COLOR* pclr);
+		[propput, id(DISPID_BORDERVISIBLE)]
+		HRESULT BorderVisible([in]VARIANT_BOOL vbool);
+		[propget, id(DISPID_BORDERVISIBLE)]
+		HRESULT BorderVisible([out, retval]VARIANT_BOOL* pbool);
+		[id(1), helpstring("method waitENQ")] HRESULT waitENQ();
+		[propget, id(2), helpstring("property Host")] HRESULT Host([out, retval] BSTR *pVal);
+		[propput, id(2), helpstring("property Host")] HRESULT Host([in] BSTR newVal);
+		[propget, id(3), helpstring("property Port")] HRESULT Port([out, retval] short *pVal);
+		[propput, id(3), helpstring("property Port")] HRESULT Port([in] short newVal);
+		[id(4), helpstring("method Connect")] HRESULT Connect([in] int iTimeOut);
+		[id(5), helpstring("method Disconnect")] HRESULT Disconnect();
+		[id(6), helpstring("method getScreenDump")] HRESULT getScreenDump([out, retval] BSTR *asciiScreenChars);
+		[id(7), helpstring("method getAttributeDump")] HRESULT getAttributeDump([out, retval] BSTR *asciiScreenAttrs);
+		[propget, id(8), helpstring("property Field")] HRESULT Field(int index, [out, retval] BSTR *pVal);
+		[propput, id(8), helpstring("property Field")] HRESULT Field(int index, [in] BSTR newVal);
+		[propget, id(9), helpstring("property FieldAttributes")] HRESULT FieldAttributes(int index, [out, retval] int *pVal);
+		[propput, id(9), helpstring("property FieldAttributes")] HRESULT FieldAttributes(int index, [in] int newVal);
+		[id(10), helpstring("method IsReverse")] HRESULT IsReverse([in] int iAttribute, [out, retval] BOOL *isIt);
+		[id(11), helpstring("method IsInvis")] HRESULT IsInvis([in] int iAttribute, [out, retval] BOOL *isIt);
+		[id(12), helpstring("method IsBlinking")] HRESULT IsBlinking([in] int iAttribute, [out, retval] BOOL *isIt);
+		[id(13), helpstring("method IsUnderLine")] HRESULT IsUnderLine([in] int iAttribute, [out, retval] BOOL *isIt);
+		[id(14), helpstring("method IsUpshift")] HRESULT IsUpshift([in] int iAttribute, [out, retval] BOOL *isIt);
+		[id(15), helpstring("method getRGB")] HRESULT getRGB([in] int iAttribute, [out, retval] int *irgb);
+		[propget, id(16), helpstring("property CurrentField")] HRESULT CurrentField([out, retval] BSTR *pVal);
+		[propput, id(16), helpstring("property CurrentField")] HRESULT CurrentField([in] BSTR newVal);
+		[propget, id(17), helpstring("property UnprotectField")] HRESULT UnprotectField([in] int iIndex, [out, retval] BSTR *pVal);
+		[propput, id(17), helpstring("property UnprotectField")] HRESULT UnprotectField([in] int iIndex, [in] BSTR newVal);
+		[propget, id(18), helpstring("property Line")] HRESULT Line([in] int index, [out, retval] BSTR *pVal);
+		[id(19), helpstring("method IsFieldChanged")] HRESULT IsFieldChanged([in] int iIndex, [out, retval] BOOL *isIt);
+		[id(20), helpstring("method CursorToField")] HRESULT CursorToField([in] int iIndex);
+		[propget, id(21), helpstring("property Row")] HRESULT Row([out, retval] int *pVal);
+		[propput, id(21), helpstring("property Row")] HRESULT Row([in] int newVal);
+		[propget, id(22), helpstring("property Column")] HRESULT Column([out, retval] int *pVal);
+		[propput, id(22), helpstring("property Column")] HRESULT Column([in] int newVal);
+		[id(23), helpstring("method SendCommandLine")] HRESULT SendCommandLine([in] BSTR sCommand);
+		[id(24), helpstring("method FakeKey")] HRESULT FakeKey([in] int iKeyCode, [in] BOOL bShift, [in] BOOL bAlt, [in] BOOL bCtrl);
+		[id(25), helpstring("method FakeKeys")] HRESULT FakeKeys([in] BSTR sKeys);
+		[id(26), helpstring("method FakeF1")] HRESULT FakeF1();
+		[id(27), helpstring("method FakeF2")] HRESULT FakeF2();
+		[id(28), helpstring("method FakeF3")] HRESULT FakeF3();
+		[id(29), helpstring("method FakeF4")] HRESULT FakeF4();
+		[id(30), helpstring("method FakeF5")] HRESULT FakeF5();
+		[id(31), helpstring("method FakeF6")] HRESULT FakeF6();
+		[id(32), helpstring("method FakeF7")] HRESULT FakeF7();
+		[id(33), helpstring("method FakeF8")] HRESULT FakeF8();
+		[id(34), helpstring("method FakeF9")] HRESULT FakeF9();
+		[id(35), helpstring("method FakeF10")] HRESULT FakeF10();
+		[id(36), helpstring("method FakeF11")] HRESULT FakeF11();
+		[id(37), helpstring("method FakeF12")] HRESULT FakeF12();
+		[id(38), helpstring("method FakeF13")] HRESULT FakeF13();
+		[id(39), helpstring("method FakeF14")] HRESULT FakeF14();
+		[id(40), helpstring("method FakeF15")] HRESULT FakeF15();
+		[id(41), helpstring("method FakeF16")] HRESULT FakeF16();
+		[id(42), helpstring("method FakeEnter")] HRESULT FakeEnter();
+		[id(43), helpstring("method FakeBackspace")] HRESULT FakeBackspace();
+		[id(44), helpstring("method FakeTab")] HRESULT FakeTab();
+		[id(45), helpstring("method FakeUpArrow")] HRESULT FakeUpArrow();
+		[id(46), helpstring("method FakeDownArrow")] HRESULT FakeDownArrow();
+		[id(47), helpstring("method FakeLeftArrow")] HRESULT FakeLeftArrow();
+		[id(48), helpstring("method FakeRightArrow")] HRESULT FakeRightArrow();
+		[id(49), helpstring("method FakeHome")] HRESULT FakeHome();
+		[id(50), helpstring("method FakeEnd")] HRESULT FakeEnd();
+		[id(51), helpstring("method FakeInsert")] HRESULT FakeInsert();
+		[id(52), helpstring("method FakeDelete")] HRESULT FakeDelete();
+		[id(53), helpstring("method toHTML")] HRESULT toHTML([out, retval] BSTR *sHTML);
+		[id(54), helpstring("method getScreenNumber")] HRESULT getScreenNumber([out, retval] BSTR *sScreenNum);
+		[id(55), helpstring("method wait34")] HRESULT wait34();
+	};
+
+[
+	uuid(EDA1E561-6F0F-11D4-98C6-000102494781),
+	version(1.0),
+	helpstring("Vt6530 Terminal Project 1.0")
+]
+library VT6530_TERMINAL_PROJLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(EDA1E573-6F0F-11D4-98C6-000102494781),
+		helpstring("_IVt5630ControlEvents Interface")
+	]
+	dispinterface _IVt5630ControlEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method Error")] void Error(BSTR sMessage);
+		[id(2), helpstring("method Debug")] void Debug(BSTR sMessage);
+		[id(3), helpstring("method Enquire")] void Enquire();
+		[id(4), helpstring("method Connected")] void Connected();
+		[id(5), helpstring("method Disconnected")] void Disconnected();
+	};
+	[
+		object,
+		uuid(507CA441-785A-11D4-98D2-000102494781),
+		dual,
+		helpstring("IVt6530 Interface"),
+		pointer_default(unique)
+	]
+	interface IVt6530 : IDispatch
+	{
+		[id(1), helpstring("method getScreenNumber")] HRESULT getScreenNumber([out, retval] BSTR *sScreenNum);
+		[id(2), helpstring("method toHTML")] HRESULT toHTML([out, retval] BSTR *sHTML);
+		[id(3), helpstring("method FakeDelete")] HRESULT FakeDelete();
+		[id(4), helpstring("method FakeInsert")] HRESULT FakeInsert();
+		[id(5), helpstring("method FakeHome")] HRESULT FakeHome();
+		[id(6), helpstring("method FakeEnd")] HRESULT FakeEnd();
+		[id(7), helpstring("method FakeRightArrow")] HRESULT FakeRightArrow();
+		[id(8), helpstring("method FakeLeftArrow")] HRESULT FakeLeftArrow();
+		[id(9), helpstring("method FakeDownArrow")] HRESULT FakeDownArrow();
+		[id(10), helpstring("method FakeUpArrow")] HRESULT FakeUpArrow();
+		[id(11), helpstring("method FakeTab")] HRESULT FakeTab();
+		[id(12), helpstring("method FakeBackspace")] HRESULT FakeBackspace();
+		[id(13), helpstring("method FakeEnter")] HRESULT FakeEnter();
+		[id(14), helpstring("method FakeF1")] HRESULT FakeF1();
+		[id(15), helpstring("method FakeF2")] HRESULT FakeF2();
+		[id(16), helpstring("method FakeF3")] HRESULT FakeF3();
+		[id(17), helpstring("method FakeF4")] HRESULT FakeF4();
+		[id(18), helpstring("method FakeF5")] HRESULT FakeF5();
+		[id(19), helpstring("method FakeF6")] HRESULT FakeF6();
+		[id(20), helpstring("method FakeF7")] HRESULT FakeF7();
+		[id(21), helpstring("method FakeF8")] HRESULT FakeF8();
+		[id(22), helpstring("method FakeF9")] HRESULT FakeF9();
+		[id(23), helpstring("method FakeF10")] HRESULT FakeF10();
+		[id(24), helpstring("method FakeF11")] HRESULT FakeF11();
+		[id(25), helpstring("method FakeF12")] HRESULT FakeF12();
+		[id(26), helpstring("method FakeF13")] HRESULT FakeF13();
+		[id(27), helpstring("method FakeF14")] HRESULT FakeF14();
+		[id(28), helpstring("method FakeF15")] HRESULT FakeF15();
+		[id(29), helpstring("method FakeF16")] HRESULT FakeF16();
+		[id(30), helpstring("method FakeKeys")] HRESULT FakeKeys([in] BSTR sKeys);
+		[id(31), helpstring("method FakeKey")] HRESULT FakeKey([in] int iKeyCode, [in] BOOL bShift, [in] BOOL bAlt, [in] BOOL bCtrl);
+		[id(32), helpstring("method SendCommand")] HRESULT SendCommand([in] BSTR sCommand);
+		[propget, id(33), helpstring("property Column")] HRESULT Column([out, retval] int *pVal);
+		[propput, id(33), helpstring("property Column")] HRESULT Column([in] int newVal);
+		[propget, id(34), helpstring("property Row")] HRESULT Row([out, retval] int *pVal);
+		[propput, id(34), helpstring("property Row")] HRESULT Row([in] int newVal);
+		[id(35), helpstring("method CursorToField")] HRESULT CursorToField([in] int iIndex);
+		[id(36), helpstring("method IsFieldChanged")] HRESULT IsFieldChanged([in] int iIndex, [out, retval] BOOL *bIsIt);
+		[propget, id(37), helpstring("property Line")] HRESULT Line([in] int iIndex, [out, retval] BSTR *pVal);
+		[propget, id(38), helpstring("property UnprotectField")] HRESULT UnprotectField([in] int iIndex, [out, retval] BSTR *pVal);
+		[propput, id(38), helpstring("property UnprotectField")] HRESULT UnprotectField([in] int iIndex, [in] BSTR newVal);
+		[propget, id(39), helpstring("property CurrentField")] HRESULT CurrentField([out, retval] BSTR *pVal);
+		[propput, id(39), helpstring("property CurrentField")] HRESULT CurrentField([in] BSTR newVal);
+		[id(40), helpstring("method getRGB")] HRESULT getRGB([in] int iAttribute, [out, retval] int *irgb);
+		[id(41), helpstring("method IsUpshift")] HRESULT IsUpshift([in] int iAttribute, [out, retval] BOOL *bIsIt);
+		[id(42), helpstring("method IsUnderLine")] HRESULT IsUnderLine([in] int iAttribute, [out, retval] BOOL *bIsit);
+		[id(43), helpstring("method IsBlinking")] HRESULT IsBlinking([in] int iAttribute, [out, retval] BOOL *bIsit);
+		[id(44), helpstring("method IsInvis")] HRESULT IsInvis([in] int iAttribute, [out, retval] BOOL *bIsit);
+		[id(45), helpstring("method IsReverse")] HRESULT IsReverse([in] int iAttribute, [out, retval] BOOL *bIsit);
+		[propget, id(46), helpstring("property FieldAttributes")] HRESULT FieldAttributes([in] int iIndex, [out, retval] int *pVal);
+		[propput, id(46), helpstring("property FieldAttributes")] HRESULT FieldAttributes([in] int iIndex, [in] int newVal);
+		[propget, id(47), helpstring("property Field")] HRESULT Field([in] int iIndex, [out, retval] BSTR *pVal);
+		[propput, id(47), helpstring("property Field")] HRESULT Field([in] int iIndex, [in] BSTR newVal);
+		[id(48), helpstring("method getAttributeDump")] HRESULT getAttributeDump([out, retval] BSTR *sScreenAttrs);
+		[id(49), helpstring("method getScreenDump")] HRESULT getScreenDump([out, retval] BSTR *sScreenChars);
+		[id(50), helpstring("method Disconnect")] HRESULT Disconnect();
+		[id(51), helpstring("method Connect")] HRESULT Connect([in] int iTimeOut);
+		[propget, id(52), helpstring("property Port")] HRESULT Port([out, retval] int *pVal);
+		[propput, id(52), helpstring("property Port")] HRESULT Port([in] int newVal);
+		[propget, id(53), helpstring("property Host")] HRESULT Host([out, retval] BSTR *pVal);
+		[propput, id(53), helpstring("property Host")] HRESULT Host([in] BSTR newVal);
+		[id(54), helpstring("method waitENQ")] HRESULT waitENQ();
+		[id(55), helpstring("method wait34")] HRESULT wait34();
+	};
+
+	[
+		uuid(EDA1E572-6F0F-11D4-98C6-000102494781),
+		helpstring("Vt6530 ActiveX Control")
+	]
+	coclass Vt6530Control
+	{
+		[default] interface IVt6530Control;
+		[default, source] dispinterface _IVt5630ControlEvents;
+	};
+	[
+		uuid(507CA442-785A-11D4-98D2-000102494781),
+		helpstring("Vt6530 DLL (non visual)")
+	]
+	coclass Vt6530
+	{
+		[default] interface IVt6530;
+	};
+};

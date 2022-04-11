@@ -1,0 +1,26 @@
+HKCR
+{
+	Vt6530.Vt6530.1 = s 'Vt6530 DLL (non visual)'
+	{
+		CLSID = s '{507CA442-785A-11D4-98D2-000102494781}'
+	}
+	Vt6530.Vt6530 = s 'Vt6530 DLL (non visual)'
+	{
+		CLSID = s '{507CA442-785A-11D4-98D2-000102494781}'
+		CurVer = s 'Vt6530.Vt6530.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {507CA442-785A-11D4-98D2-000102494781} = s 'Vt6530 DLL (non visual)'
+		{
+			ProgID = s 'Vt6530.Vt6530.1'
+			VersionIndependentProgID = s 'Vt6530.Vt6530'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{EDA1E561-6F0F-11D4-98C6-000102494781}'
+		}
+	}
+}
