@@ -1,0 +1,35 @@
+Type=Exe
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\WINDOWS\System32\stdole2.tlb#OLE Automation
+Reference=*\G{7FB20BF1-C720-46C6-B00F-97F69884D90F}#2.1#0#..\..\Program Files\Crystal Point\OutsideView32\DLL\OV_SSO.dll#OV_SSO
+Form=frmMain.frm
+Startup="frmMain"
+HelpFile=""
+ExeName32="OV_SSO_Test.exe"
+Command32=""
+Name="OV_SSO_Test"
+HelpContextID="0"
+CompatibleMode="0"
+MajorVer=1
+MinorVer=0
+RevisionVer=0
+AutoIncrementVer=0
+ServerSupportFiles=0
+VersionCompanyName="State of Washington"
+CompilationType=0
+OptimizationType=0
+FavorPentiumPro(tm)=0
+CodeViewDebugInfo=0
+NoAliasing=0
+BoundsCheck=0
+OverflowCheck=0
+FlPointCheck=0
+FDIVCheck=0
+UnroundedFP=0
+StartMode=0
+Unattended=0
+Retained=0
+ThreadPerObject=0
+MaxNumberOfThreads=1
+
+[MS Transaction Server]
+AutoRefresh=1

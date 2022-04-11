@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D1D691CA-37EF-4B40-8024-82A170814241}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DOR.TandemScreens</RootNamespace>
+    <AssemblyName>DOR.TandemScreens</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Address.cs" />
+    <Compile Include="BR\S101.cs" />
+    <Compile Include="BR\R360.cs" />
+    <Compile Include="BR\S102.cs" />
+    <Compile Include="BR\S103.cs" />
+    <Compile Include="BR\S105.cs" />
+    <Compile Include="BR\S165.cs" />
+    <Compile Include="BR\S1750.cs" />
+    <Compile Include="BR\S1750_1.cs" />
+    <Compile Include="BR\S180.cs" />
+    <Compile Include="CL\R002.cs" />
+    <Compile Include="Date.cs" />
+    <Compile Include="LV\LeaveHelper.cs" />
+    <Compile Include="LV\S2401.cs" />
+    <Compile Include="LV\S2401_2.cs" />
+    <Compile Include="LV\S2402.cs" />
+    <Compile Include="LV\S2402_2.cs" />
+    <Compile Include="LV\S2402_3.cs" />
+    <Compile Include="LV\S2405.cs" />
+    <Compile Include="LV\S2408.cs" />
+    <Compile Include="LV\S2410.cs" />
+    <Compile Include="LV\S2410_2.cs" />
+    <Compile Include="LV\S2411.cs" />
+    <Compile Include="OV_SSO.cs" />
+    <Compile Include="PhoneNumber.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Screen.cs" />
+    <Compile Include="SR\Employee.cs" />
+    <Compile Include="SR\JavaServletHelper.cs" />
+    <Compile Include="SR\S1301.cs" />
+    <Compile Include="SR\S1301_2.cs" />
+    <Compile Include="SR\S1304.cs" />
+    <Compile Include="SR\S1310.cs" />
+    <Compile Include="SR\S1351.cs" />
+    <Compile Include="SR\S1352.cs" />
+    <Compile Include="SR\S1352Scope.cs" />
+    <Compile Include="SR\S1354.cs" />
+    <Compile Include="SR\ServiceRequest.cs" />
+    <Compile Include="SR\ServiceRequests.cs" />
+    <Compile Include="SR\SrHourDetail.cs" />
+    <Compile Include="SS\R001.cs" />
+    <Compile Include="TA\S410.cs" />
+    <Compile Include="TA\S456.cs" />
+    <Compile Include="Terminal.cs" />
+    <Compile Include="UnitTests\PhoneNumTest.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="Web References\USPSAddressStandardization\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Maximum\Maximum.csproj">
+      <Project>{5F4E2061-4FF5-4F35-8787-B84A4708AEA0}</Project>
+      <Name>Maximum</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibVt6530\LibVt6530.csproj">
+      <Project>{933F24CC-CEB5-43A7-AF79-9166F868522F}</Project>
+      <Name>LibVt6530</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://dortestapps/USPSAddressStandardization/USPSAddressStandardization.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\USPSAddressStandardization\</RelPath>
+      <UpdateFromURL>http://dortestapps/USPSAddressStandardization/USPSAddressStandardization.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>DOR_TandemScreens_USPSAddressStandardization_USPSAddressStandardization</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\USPSAddressStandardization\USPSAddressStandardization.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\USPSAddressStandardization\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\USPSAddressStandardization\USPSAddressStandardization.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SR\Tables.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

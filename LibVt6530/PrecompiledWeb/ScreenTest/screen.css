@@ -1,0 +1,14 @@
+BODY { font-family:Sans-Serif; font-size:11pt }
+A:link { COLOR: blue } 
+A:visited { COLOR: blue } 
+A:hover { COLOR: blue } 
+A.wlink:link { FONT-SIZE: smaller; COLOR: white } 
+A.wlink:visited { FONT-SIZE: smaller; COLOR: white } 
+A.wlink:hover { FONT-WEIGHT: normal; FONT-SIZE: smaller; COLOR: lavender } 
+A.blink:hover { COLOR: black } 
+A.blink:link { COLOR: black } 
+A.blink:visited { COLOR: black } 
+A.smenu:hover { FONT-SIZE: smaller; COLOR: white } 
+A.smenu:link { FONT-SIZE: smaller; COLOR: white } 
+A.smenu:visited { FONT-SIZE: smaller; COLOR: white } 
+.header { FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: navy }

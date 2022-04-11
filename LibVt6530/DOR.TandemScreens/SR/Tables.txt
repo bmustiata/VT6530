@@ -1,0 +1,170 @@
+CRE1      DEVPHASE  EACTCMNT  EMPASAC0  EMPASAC1  EMPASACT  EMPASMNT  SREXPAND
+SRSEQNUM  SRSTSACT  SRVCTGRY  SRVPRTY   SRVRQ     SRVRQANL  SRVRQDSC  SRVRQEST
+SRVRQSCP  SRVRQSTS  SRVRQSYS
+
+>>invoke =DEVPHASE;
+-- Definition of table \DOR.$D10.SR.DEVPHASE
+-- Definition current at 12:49:42 - 12/05/06
+
+  (
+    DEVPHASE_ID                    PIC 9(4) DEFAULT SYSTEM NOT NULL
+  , DEVPHASE_NAME                  PIC X(25) DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =EACTCMNT;
+-- Definition of table \DOR.$D10.SR.EACTCMNT
+-- Definition current at 12:50:03 - 12/05/06
+
+  (
+    EMPASACT_SQLDTS                DATETIME YEAR TO FRACTION(6) DEFAULT SYSTEM
+                                   NOT NULL
+  , EACTCMNT_SEQ_NUM               PIC 9(2) DEFAULT SYSTEM NOT NULL
+  , EACTCMNT_LINE_TXT              PIC X(68) DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =EMPASACT;
+-- Definition of table \DOR.$D10.SR.EMPASACT
+-- Definition current at 12:50:27 - 12/05/06
+
+  (
+    DORUSER_ID                     PIC S9(9) COMP DEFAULT SYSTEM NOT NULL
+  , EMPASACT_DATE                  PIC 9(8) DEFAULT SYSTEM NOT NULL
+  , DEVPHASE_ID                    PIC 9(4) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_ID                       PIC 9(7) DEFAULT SYSTEM NOT NULL
+  , EMPASACT_SQLDTS                DATETIME YEAR TO FRACTION(6) DEFAULT SYSTEM
+                                   NOT NULL
+  , EMPASACT_HR_QTY                PIC 9(5)V99 DEFAULT SYSTEM NOT NULL
+  , EMPASACT_DWNLD_CODE            PIC 9(1) DEFAULT SYSTEM NOT NULL
+  , REC_UPDATE_NUM                 PIC 9(1) DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =EMPASMNT;
+-- Definition of table \DOR.$D10.SR.EMPASMNT
+-- Definition current at 12:51:22 - 12/05/06
+
+  (
+    SRVRQ_ID                       PIC 9(7) DEFAULT SYSTEM NOT NULL
+  , DORUSER_ID                     PIC S9(9) COMP DEFAULT SYSTEM NOT NULL
+  , EMPASMNT_ASSGN_DATE            PIC 9(8) DEFAULT SYSTEM NOT NULL
+  , EMPASMNT_DWNLD_CODE            PIC 9(1) DEFAULT SYSTEM NOT NULL
+  , REC_UPDATE_NUM                 PIC 9(1) DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =SREXPAND;
+-- Definition of table \DOR.$D10.SR.SREXPAND
+-- Definition current at 12:51:49 - 12/05/06
+
+  (
+    SRVRQ_ID                       PIC 9(7) COMP DEFAULT SYSTEM NOT NULL
+  , DORUSER_ID                     PIC S9(9) COMP DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =SRSTSACT;
+-- Definition of table \DOR.$D10.SR.SRSTSACT
+-- Definition current at 12:52:26 - 12/05/06
+
+  (
+    SRVRQ_ID                       PIC 9(7) DEFAULT SYSTEM NOT NULL
+  , SRVRQSTS_ID                    PIC 9(2) DEFAULT SYSTEM NOT NULL
+  , SRVRQANL_STATUS_DATE           PIC 9(8) DEFAULT SYSTEM NOT NULL
+  , SRVRQANL_STATUS_TIME           PIC 9(6) DEFAULT SYSTEM NOT NULL
+  , SRSTSACT_DWNLD_CODE            PIC 9(1) DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =SRVCTGRY;
+-- Definition of table \DOR.$D10.SR.SRVCTGRY
+-- Definition current at 12:52:58 - 12/05/06
+
+  (
+    SRVCTGRY_ID                    PIC 9(2) DEFAULT SYSTEM NOT NULL
+  , SRVCTGRY_NAME                  PIC X(13) DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =SRVRQ;
+-- Definition of table \DOR.$D10.SR.SRVRQ
+-- Definition current at 12:53:31 - 12/05/06
+
+  (
+    SRVRQ_ID                       PIC 9(7) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_NAME                     PIC X(45) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_SQLDTS                   DATETIME YEAR TO FRACTION(6) DEFAULT SYSTEM
+                                   NOT NULL
+  , DORUSER_ID                     PIC S9(9) COMP DEFAULT SYSTEM NOT NULL
+  , SRVRQ_INIT_E_MAIL_ID           PIC X(45) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_INIT_PHONE_AREA_CODE     PIC 9(3) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_INIT_PHONE_LOCAL_NUM     PIC 9(7) DEFAULT SYSTEM NOT NULL
+  , DIVS_DIVISION_CODE             PIC 9(2) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_INIT_SUPV_E_MAIL_ID      PIC X(45) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_CNTCT_E_MAIL_ID          PIC X(45) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_CNTCT_PHONE_AREA_CODE    PIC 9(3) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_CNTCT_PHONE_LOCAL_NUM    PIC 9(7) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_DISTR_E_MAIL_ID          PIC X(45) DEFAULT SYSTEM NOT NULL
+  , SRVRQSYS_ID                    PIC X(2) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_INIT_DATE                PIC 9(8) DEFAULT SYSTEM NOT NULL
+  , SRVCTGRY_ID                    PIC 9(2) DEFAULT SYSTEM NOT NULL
+  , SRVPRTY_ID                     PIC 9(2) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_MULT_SYS_IND             PIC 9(1) DEFAULT SYSTEM NOT NULL
+  , SRVRQ_DWNLD_CODE               PIC 9(1) DEFAULT SYSTEM NOT NULL
+  , REC_UPDATE_NUM                 PIC 9(1) DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =SRVRQANL;
+-- Definition of table \DOR.$D10.SR.SRVRQANL
+-- Definition current at 12:53:52 - 12/05/06
+
+  (
+    SRVRQ_ID                       PIC 9(7) DEFAULT SYSTEM NOT NULL
+  , SRVRQANL_OTHR_ID               PIC X(7) DEFAULT SYSTEM NOT NULL
+  , SRVRQSTS_ID                    PIC 9(2) DEFAULT SYSTEM NOT NULL
+  , SRVRQANL_STATUS_DATE           PIC 9(8) DEFAULT SYSTEM NOT NULL
+  , SRVRQANL_STATUS_TIME           PIC 9(6) DEFAULT SYSTEM NOT NULL
+  , SRVRQANL_CMPLT_DATE            PIC 9(8) DEFAULT SYSTEM NOT NULL
+  , SRVRQANL_PREPR_E_MAIL_ID       PIC X(45) DEFAULT SYSTEM NOT NULL
+  , SRVRQANL_DWNLD_CODE            PIC 9(1) DEFAULT SYSTEM NOT NULL
+  , REC_UPDATE_NUM                 PIC 9(1) DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =SRVRQDSC;
+-- Definition of table \DOR.$D10.SR.SRVRQDSC
+-- Definition current at 12:54:15 - 12/05/06
+
+  (
+    SRVRQ_ID                       PIC 9(7) DEFAULT SYSTEM NOT NULL
+  , SRVRQDSC_SEQ_NUM               PIC 9(2) DEFAULT SYSTEM NOT NULL
+  , SRVRQDSC_TXT                   PIC X(50) DEFAULT SYSTEM NOT NULL
+  , REC_UPDATE_NUM                 PIC 9(1) DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =SRVRQSCP;
+-- Definition of table \DOR.$D10.SR.SRVRQSCP
+-- Definition current at 12:54:33 - 12/05/06
+
+  (
+    SRVRQ_ID                       PIC 9(7) DEFAULT SYSTEM NOT NULL
+  , SRVRQSCP_SEQ_NUM               PIC 9(2) DEFAULT SYSTEM NOT NULL
+  , SRVRQSCP_TXT                   PIC X(50) DEFAULT SYSTEM NOT NULL
+  , REC_UPDATE_NUM                 PIC 9(1) DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =SRVRQSTS;
+-- Definition of table \DOR.$D10.SR.SRVRQSTS
+-- Definition current at 12:54:58 - 12/05/06
+
+  (
+    SRVRQSTS_ID                    PIC 9(2) DEFAULT SYSTEM NOT NULL
+  , SRVRQSTS_NAME                  PIC X(15) DEFAULT SYSTEM NOT NULL
+  )
+
+>>invoke =SRVRQSYS;
+-- Definition of table \DOR.$D10.SR.SRVRQSYS
+-- Definition current at 12:55:15 - 12/05/06
+
+  (
+    SRVRQSYS_ID                    PIC X(2) DEFAULT SYSTEM NOT NULL
+  , SRVRQSYS_NAME                  PIC X(30) DEFAULT SYSTEM NOT NULL
+  , SRVRQSYS_CONTACT_NAME          PIC X(30) DEFAULT SYSTEM NOT NULL
+  , SRVRQSYS_CONTACT_PHONE_NUM     PIC S9(10) COMP DEFAULT SYSTEM NOT NULL
+  , SRVRQSYS_ADMIN_DORUSER_ID      PIC S9(9) COMP DEFAULT SYSTEM NOT NULL
+  )
+
+
