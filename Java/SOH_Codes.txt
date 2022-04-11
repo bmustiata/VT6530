@@ -1,0 +1,38 @@
+Send term status (BLOCK)
+
+	1, 63, 67, 70, 67, 74, 94, 64, 3, 0
+	    ?   C   F   C   J   ^   @
+
+Send term config
+	
+	1, 33,	...	, 3, 0
+	    !
+
+????	Page Count, cursor position?????
+
+	1, 107, 33, 46, 75, 3, 0
+	     k,  !,  .,  K,
+
+Enter Key
+	1, 86, 33, 32, 46, 3, 0
+	    V,  !,   ,  .,
+
+Conversation Mode
+	1, 67, 3, 0
+	    C
+
+Block Mode
+	1, 66, 3, 0
+	    B
+
+ANSI Mode
+	1, 65, 3, 0
+	    A
+
+??? Send Term Config????
+	1, !, X, X, X
+
+Firmware revision level
+	1, 35, 67, 48, 48, 84, 79, 67, 48, 48, 13
+	    #,  C,  0,  0,  T,  O,  C,  0,  0
+

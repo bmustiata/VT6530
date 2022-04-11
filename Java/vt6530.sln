@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{66355F20-A65B-11D0-BFB5-00A0C91EBFA0}") = "vt6530", "vt6530.vjp", "{39A0E060-583E-11D4-9133-00C09F00D14B}"
+	ProjectSection(SourceCodeControl) = preProject
+		SccProjectName = \u0022$/VT6530/Java\u0022,\u0020VQXAAAAA
+		SccAuxPath = \\\\Is-main\\Restricted\\Apps\\Source_Safe,
+		SccLocalPath = .
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {39A0E060-583E-11D4-9133-00C09F00D14B}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {39A0E060-583E-11D4-9133-00C09F00D14B}
+	EndGlobalSection
+	GlobalSection(SourceCodeControl) = preSolution
+		SccProjectName = \u0022$/VT6530/Java\u0022,\u0020VQXAAAAA
+		SccAuxPath = \\\\Is-main\\Restricted\\Apps\\Source_Safe,
+		SccLocalPath = .
+	EndGlobalSection
+	GlobalSection(DeploymentRoot) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,83 @@
+<SCRIPT lanugauge='JavaScrip'>
+function pageLoad() 
+{ 
+	if (document.layers) 
+	{
+	} 
+	else 
+	{
+		document.applets.item(0).requestFocus();
+	}	
+}
+
+function scrape()
+{
+	scrapeText.innerText = term.screenScrape();
+}
+function setblue()
+{
+	term.setBackgroundColor("BLUE");
+	term.setForegroundColor("WHITE");
+}
+function setgrey()
+{
+	term.setBackgroundColor("GRAY");
+	term.setForegroundColor("BLACK");	
+}
+function setblack()
+{
+	term.setBackgroundColor("BLACK");
+	term.setForegroundColor("WHITE");
+}
+function setgreen()
+{
+	term.setBackgroundColor("BLACK");
+	term.setForegroundColor("GREEN");
+}
+function openWindow()
+{
+	term.openWindow();
+}
+</SCRIPT>
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Notepad V6.0">
+<TITLE>VT 6530</TITLE>
+</HEAD>
+<BODY onload="pageLoad()">
+<p/><CENTER><H2>VT6530 Beta2a</H2><BR/>
+<APPLET CODE="gov.revenue.vt6530.Webbed.class" WIDTH=640 HEIGHT=410 id=term>
+<PARAM NAME=HOST VALUE="elf_bkup">
+<PARAM NAME=JHOST VALUE="dor-ws-e084323">
+<PARAM NAME=PORT VALUE="900">
+<PARAM NAME=BGCOLOR VALUE="GRAY">
+<PARAM NAME=FGCOLOR VALUE="BLACK">
+</APPLET>
+<TABLE cols=4>
+<TR>
+<TD>
+<INPUT type='button' onclick=setblue() value='BLUE/WHITE'/ id='button1' name='button1'/>
+</TD>
+<TD>
+<INPUT type='button' onclick=setgrey() value='GREY/BLACK'/ id='button2' name='button2'/>
+</TD>
+<TD>
+<INPUT type='button' onclick=setblack() value='BLACK/WHITE'/ id='button3' name='button3'/>
+</TD>
+<TD>
+<INPUT type='button' onclick=setgreen() value='BLACK/GREEN'/ id='button4' name='button4'/>
+</TD>
+</TR>
+<TR>
+<TD colspan=2>
+<INPUT type='button' onclick=scrape() value='Scrape Screen'/>
+</TD><TD colspan=2>
+<INPUT type='button' onclick=openWindow() value='Open Window'/>
+</TD>
+</TR>
+</TABLE>
+<P/>
+<DIV id='scrapeText'>&nbsp</DIV>
+<A HREF='mailto:johnga@dor.wa.gov'>Got Bugs?</A>
+</BODY>
+</HTML>
