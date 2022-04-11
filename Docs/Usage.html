@@ -1,0 +1,330 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD>
+<META content="text/html; charset=unicode" http-equiv=Content-Type>
+<META content="MSHTML 5.00.3105.105" name=GENERATOR></HEAD>
+<BODY bgColor=black text=lime>
+<P align=center><FONT face=Arial size=5 style="BACKGROUND-COLOR: #000000">Vt6530 
+ActiveX Control</FONT></P>
+<P align=left>
+<TABLE border=1 cellPadding=1 cellSpacing=1 width="100%">
+  <TBODY>
+  <TR>
+    <TD vAlign=top width='50' style="WIDTH: 50px">
+      <P><FONT face=Arial></FONT>&nbsp;</P>
+      <P><FONT face=Arial><A 
+      href="Usage.html#Introduction">Introduction</A></FONT></P>
+      <P><FONT face=Arial><A 
+      href="Usage.html#Unimplemented">Unimplemented<BR>Features</A></FONT></P>
+      <P><FONT face=Arial><A 
+      href="Usage.html#Bugs">Bugs</A></FONT></P>
+      <P><FONT face=Arial><A 
+      href="Usage.html#Create">Creation</A></FONT></P>
+      <P><FONT face=Arial><A 
+      href="Usage.html#api">API</A></FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial><A 
+        href="Usage.html#connection">Connection</A></FONT></P>
+        <P><FONT face=Arial><A 
+        href="Usage.html#keys">Keys</A></FONT></P>
+        <P><FONT face=Arial><A 
+        href="Usage.html#scrape">Screen<BR>Scraping</A></FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial><A 
+      href="Usage.html#events">Events</A></FONT></P></TD>
+    <TD vAlign=top>
+      <P><STRONG><FONT 
+      face=Arial><STRONG>*******************************</STRONG><BR><A name=Introduction></A>Introduction<STRONG></FONT><BR><FONT 
+      face=Arial>*******************************</FONT></STRONG></STRONG></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>The Vt6530 activex control is 
+        used to place a terminal interface in a VB program, or to access Tandem 
+        screen data programmatically.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial><STRONG>*******************************<BR><A name=Unimplemented></A>Unimplemented Features<BR><STRONG>*******************************</STRONG></STRONG></FONT></P>
+      <UL style="MARGIN-RIGHT: 0px">
+        <UL>
+      <LI><FONT face=Arial>Data type attributes</FONT>
+          <LI><FONT face=Arial>Color attributes</FONT>
+          <LI><FONT face=Arial>Autotab suppression</FONT>
+          <LI><FONT face=Arial>Insert/delete keys </FONT>
+      <LI><FONT face=Arial>Conversation mode character 
+          attributes</FONT>
+          <LI><FONT face=Arial>Blinking cursors</FONT>
+          <LI><FONT face=Arial>Correct handling of the 34 IAC</FONT></LI></UL></UL>
+      <P><FONT face=Arial><STRONG><STRONG>*******************************<BR></STRONG><A name=Bugs></A>Bugs<BR><STRONG>*******************************</STRONG></STRONG></FONT></P>
+      <UL style="MARGIN-RIGHT: 0px">
+        <UL>
+          <LI><FONT face=Arial>TEDIT ABENDS on exit</FONT>
+          <LI><FONT face=Arial>Some arrow keys don't function 
+          correctly</FONT>
+          <LI><FONT face=Arial>Blinking attribute may not be rendered 
+          correctly</FONT>
+          <LI><FONT face=Arial>Font scaling needs to be 
+      improved</FONT></LI></UL></UL><FONT face=Arial>
+      <P><STRONG><FONT face=Arial>*******************************<BR></FONT><A name=Create></A>Creation<BR><FONT 
+      face=Arial>*******************************</FONT></STRONG></P>
+      <P>ActiveX Control</P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P>Add component reference "Vt6530 Terminal Project 
+        1.0" to your project.&nbsp; The control will appear on your tool 
+        pallet.</P></BLOCKQUOTE>
+      <P>Non-visual Component</P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P>Set objTerminal = 
+        CreateObject("Vt6530.Vt6530")</P></BLOCKQUOTE><STRONG>
+      <P>*******************************<BR><A name=api></A>API</FONT><BR><FONT 
+      face=Arial>*******************************</FONT></STRONG>
+</P>
+      <P><FONT face=Arial><STRONG><A name=connection><FONT face=Arial><STRONG></STRONG></FONT></A>Connection</STRONG></FONT></P>
+      <P><FONT face=Arial>Sub<BR>Connect (iTimeOut As Long) </FONT> </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Connect to the 
+        server.</FONT>   </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>Disconnect</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Drop connection to the server. 
+        </FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Property<BR>  Port As Long </FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Sets the port number to connect 
+        to.&nbsp; The default is 1016.</FONT>          
+      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Property<BR>Host As String </FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Sets the host name to 
+        connect to.&nbsp; The default is "IS". </FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial><STRONG><A name=keys><FONT face=Arial><STRONG></STRONG></FONT></A>Keys</STRONG></FONT></P>
+      <P><FONT face=Arial>Sub<BR>FakeDelete()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeInsert()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeEnd()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeHome()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeRightArrow() </FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeLeftArrow()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeDownArrow()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeUpArrow()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeTab()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeBackspace()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeEnter()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF16()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF15()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF14()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF13()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF12()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF11()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF10()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF9()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF8()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF7()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF6()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF5()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF4()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF3()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF2()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeF1()</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>FakeKeys(sKeys As String) </FONT> </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Send a string as if&nbsp;it was 
+        typed on the keyboard.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR> FakeKey(iKeyCode As Long, bShift As BOOL, bAlt As 
+      BOOL,&nbsp;bCtr As BOOL) </FONT> </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Fake a key event as if the key 
+        were pressed on the keyboard by the user.&nbsp; This function can also 
+        be used to enter virtual key codes (See the Win32 API).&nbsp; The state 
+        of the shift, alt, and control keys can be set using the respective 
+        arguments.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>SendCommandLine(sCommand As String) </FONT> </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+        <P><FONT face=Arial>Send a command line 
+        command</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial><STRONG><A name=scrape><FONT face=Arial><STRONG> 
+      </STRONG></FONT></A>Screen 
+      Handling</STRONG></FONT>   </P>
+      <P><FONT face=Arial>Property<BR>Column As Long </FONT>   </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>Get the current cursor column 
+        (1-80). </FONT>   </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Property<BR>Row&nbsp;As Long </FONT>   </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Get the current cursor 
+        row (1-24) </FONT>   </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>CursorToField(iIndex As Long) </FONT>  </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>Move the cursor to the 
+        iIndex'th unprotected field (starting at zero). </FONT>  </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Function<BR>IsFieldChanged(iIndex As Long) As BOOL </FONT>      </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Check the MDT for the 
+        iIndex'th field. </FONT>      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Property<BR>Line(index As Long) As String </FONT>      </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Retrive the specified 
+        field from the screen (1-24). </FONT>      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Property<BR>  
+      UnprotectField(iIndex As Long) As String </FONT>      
+      </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>Get the contents of the 
+        iIndex'th field (starting at zero). </FONT>   </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Property<BR>CurrentField As String </FONT>   </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>Get or set the contents of the 
+        field containing the cursor. </FONT>   </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Function<BR>getRGB(iAttribute As Long) As Long&nbsp; </FONT>      </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Get the RGB value of an 
+        attribute. </FONT>      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Function<BR>IsUpshift(iAttribute As Long) As Long&nbsp; 
+      </FONT>          </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Get the upshift value of 
+        an attribute. </FONT>      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Function<BR>IsUnderLine(iAttribute As Long) As Long&nbsp; 
+      </FONT>          </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Get the underline value 
+        of an attribute. </FONT>      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Function<BR>IsBlinking(iAttribute As Long) As Long&nbsp; 
+      </FONT>          </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Get the blinking value of 
+        an attribute. </FONT>      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Function<BR>IsInvis(iAttribute As Long) As Long&nbsp; </FONT>          </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Get the invisible value 
+        of an attribute. </FONT>      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Function<BR>IsReverse(iAttribute As Long) As Long&nbsp; 
+      </FONT>          </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Get the reverse video 
+        value of an attribute. </FONT>      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Property<BR>FieldAttributes(iAttribute As Long) As Long&nbsp; 
+      </FONT>          </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Get the&nbsp;attributes 
+        of the field containing the cursor. </FONT>      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Property<BR>Field(int index) As String </FONT>      </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Get or set the value of a 
+        field. </FONT>      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Function<BR>getAttributeDump As String </FONT>    </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Get all the screen 
+        attributes in ASCII. </FONT>    </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Function<BR>getScreenDump As String </FONT>    </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>&nbsp;Get the character data 
+        for the screen. </FONT>    </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>waitENQ </FONT> </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>In block mode, this allows you 
+        to wait for the Tandem to finish sending data. </FONT> </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>wait34</FONT></P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>In conversation mode, this 
+        might let you wait for the Tandem to finish sending 
+      data.</FONT></P></BLOCKQUOTE>
+      <P><FONT face=Arial>Sub<BR>Function getScreenNumber As String </FONT>      
+      </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>Get the current screen number. 
+        </FONT>      
+      </P></BLOCKQUOTE>
+      <P><FONT face=Arial>Function<BR>toHTML As String </FONT>   </P>
+      <BLOCKQUOTE style="MARGIN-RIGHT: 0px">
+      <P><FONT face=Arial>Get the current screen as an 
+        HTML document.&nbsp; (Not completely working yet). 
+</FONT>   </P></BLOCKQUOTE>
+      <P><FONT 
+face=Arial><STRONG><A name=Events><FONT 
+face=Arial><STRONG></STRONG></FONT></A>Events</STRONG></FONT>   </P>
+      <P><FONT face=Arial>Sub<BR></FONT><FONT 
+      face=Arial>Connected</FONT>   </P>
+      <P><FONT face=Arial>Sub<BR>Disconnected</FONT>   </P>
+      <P><FONT face=Arial>Sub<BR>Enquire</FONT>   </P>
+      <P><FONT face=Arial>Sub<BR>Debug(sMessage as 
+      String)</FONT>   </P>
+      <P><FONT face=Arial>Sub<BR>Error(sMessage as 
+      String)</FONT>   </P>
+      <P><FONT face=Arial> 
+</FONT>   </P></TD></TR></TBODY></TABLE></P>
+</BODY>
+</HTML>
