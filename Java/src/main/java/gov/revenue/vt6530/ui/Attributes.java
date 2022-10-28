@@ -6,7 +6,7 @@ package gov.revenue.vt6530.ui;
 public interface Attributes
 {
 	static final int MASK_CHAR = 0xFF;
-	
+
 	/**
 	 *  VIDEO attributes
 	 */
@@ -33,24 +33,24 @@ public interface Attributes
 	final static int KEY_KB_ONLY	= (1<<20);
 	final static int KEY_AID_ONLY	= (1<<21);
 	final static int KEY_EITHER		= (1<<22);
-	
+
 	/**
 	 *  SPECIAL attributes used by TextDisplay
 	 */
 	final static int CHAR_START_FIELD = (1<<23);
-	final static int CHAR_CELL_DIRTY = (1<<24);	
+	final static int CHAR_CELL_DIRTY = (1<<24);
 	final static int MASK_FIELD = ((1<<8)|(1<<9)|(1<<10)|(1<<11)|(1<<12)|(1<<13)|(1<<14)|(1<<15)|(1<<16)|(1<<17)|(1<<18)|(1<<19)|(1<<20)|(1<<21)|(1<<22)|(1<<23)|(1<<25)|(1<<26)|(1<<27));
-	
+
 	/**
 	 *  Color bits
 	 */
 	final static int MASK_COLOR = ((1<<25)|(1<<26)|(1<<27));
 	final static int SHIFT_COLOR = 25;
-	
+
 	/**
-	 *  Insert mode 
+	 *  Insert mode
 	 */
 	final static int INSERT_INSERT = 0;
 	final static int INSERT_OVERWRITE = 1;
-	
+
 }

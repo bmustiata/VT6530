@@ -84,7 +84,7 @@ public class SharedProtocol implements PageProtocol, ClipboardOwner
 				//page.mem[cursor.row][cursor.column] |= CHAR_CELL_DIRTY;
 				//cursor.column = 0;
 				//page.mem[cursor.row][cursor.column] |= CHAR_CELL_DIRTY;
-				break;;
+				break;
 			case '\b':
 				backspace(page);
 				break;

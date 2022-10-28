@@ -10,40 +10,40 @@ import gov.revenue.ASSERT;
 public class TextDisplay implements Attributes
 {
 	private StringBuffer statusLine = new StringBuffer(80);
-	
+
 	private int charWidth;      /* current width of a char */
 	private int charHeight;      /* current height of a char */
-	private int charDescent;      /* base line descent */	
-	
+	private int charDescent;      /* base line descent */
+
 	private Page displayPage;
 	private Page writePage;
 	private Page[] pages;
 	private int numPages;
-	
+
 	private boolean echoOn = true;
 	private boolean blockMode = false;
 	private boolean protectMode = false;
-	
+
 	private boolean requiresRepaint = true;
-	
+
 	PageProtocol ppprotectMode = new ProtectPage();
 	PageProtocol ppunProtectMode = new UnprotectPage();
 	PageProtocol ppconvMode = new UnprotectPage();
 
 	PageProtocol ppRemote;
-	
+
 	boolean keysLocked;
-	
+
 	int numRows, numColumns;
-		
-	
+
+
 	public TextDisplay(int pageCount, int cols, int rows)
 	{
 		numPages = pageCount;
 		numRows = rows;
 		numColumns = cols;
 		ppRemote = ppconvMode;
-		
+
 		init();
 
 		statusLine.insert(0, "                                                                                  ");
@@ -58,7 +58,7 @@ public class TextDisplay implements Attributes
 			setCursorRowCol(x, 0);
 			writeDisplay("*");
 			setCursorRowCol(x, numColumns-1);
-			writeDisplay("*");			
+			writeDisplay("*");
 		}
 	}
 
@@ -66,30 +66,30 @@ public class TextDisplay implements Attributes
 	{
 		return requiresRepaint;
 	}
-	
+
 	public void setRePaint()
 	{
 		requiresRepaint = true;
 	}
-	
+
 	public void writeBuffer(String text)
 	{
 		writePage.writeBuffer(ppRemote, text);
 	}
-	
+
 	public void writeDisplay(String text)
 	{
 		displayPage.writeCursor(ppRemote, text);
 		requiresRepaint = true;
 	}
-	
+
 	public void writeLocal(String text)
 	{
 		displayPage.writeCursorLocal(ppRemote, text);
 		ppRemote.validateCursorPos(displayPage);
 		requiresRepaint = true;
 	}
-	
+
 	public void echoDisplay(String text)
 	{
 		if (echoOn)
@@ -106,7 +106,7 @@ public class TextDisplay implements Attributes
 		}
 	}
 
-	
+
 		/** ESC W
 	 *  1.  Clear all pages to blanks
 	 *  2.  Set video prior condition to NORMAL for all pages
@@ -134,8 +134,8 @@ public class TextDisplay implements Attributes
 		writeStatus("BLOCK PROT");
 		requiresRepaint = true;
 	}
-	
-	
+
+
 	/** ESC X
 	 *  1.  Clear all pages to blanks
 	 *  2.  Set the video prior conditiion registers to NORMAL for all pages
@@ -161,17 +161,17 @@ public class TextDisplay implements Attributes
 		writeStatus("BLOCK");
 		protectMode = false;
 	}
-	
+
 	public void keysLocked()
 	{
 		keysLocked = true;
 	}
-	
+
 	public void keysUnlocked()
 	{
 		keysLocked = false;
 	}
-	
+
 	/** ESC :
 	 */
 	public void setPage(int page)
@@ -182,14 +182,14 @@ public class TextDisplay implements Attributes
 		//}
 		writePage = pages[page];
 	}
-	
+
 	/** 0x07
 	 */
 	public void bell()
 	{
 		// ding, ding, ding
 	}
-	
+
 	/** 0x08
 	 */
 	public void backspace()
@@ -197,15 +197,15 @@ public class TextDisplay implements Attributes
 		writePage.backspace(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** 0x09
 	 */
 	public void tab()
 	{
 		writePage.tab(ppRemote, 1);
 		requiresRepaint = true;
-	}	
-	
+	}
+
 	/** 0x0A
 	 */
 	public void linefeed()
@@ -213,7 +213,7 @@ public class TextDisplay implements Attributes
 		writePage.cursorDown(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** 0x0D
 	 */
 	public void carageReturn()
@@ -221,7 +221,7 @@ public class TextDisplay implements Attributes
 		writePage.carageReturn(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC J
 	 */
 	public void setCursorRowCol(int row, int col)
@@ -231,7 +231,7 @@ public class TextDisplay implements Attributes
 		writePage.setCursor(ppRemote, row, col);
 		requiresRepaint = true;
 	}
-	
+
 	public void setBufferRowCol(int row, int col)
 	{
 		ASSERT.fatal(row < numRows && col < numColumns, "", 2, "");
@@ -249,35 +249,35 @@ public class TextDisplay implements Attributes
 	{
 		writePage.insertMode = mode;
 	}
-		
+
 	/** ESC 0
 	 */
 	public void printScreen()
 	{
 	}
-	
+
 	/** ESC 1
-	 * 
+	 *
 	 *  Set a tab at the current cursor location
 	 */
 	public void setTab()
 	{
 	}
-	
+
 	/** ESC 2
-	 * 
+	 *
 	 *  Clear the tab at the current cursor location
 	 */
 	public void clearTab()
 	{
 	}
-	
+
 	/** ESC 3
 	 */
 	public void clearAllTabs()
 	{
 	}
-		
+
 	/** ESC i
 	 */
 	public void backtab()
@@ -285,9 +285,9 @@ public class TextDisplay implements Attributes
 		displayPage.tab(ppRemote, -1);
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC 6
-	 * 
+	 *
 	 *  All subsuquent writes use this attribute
 	 */
 	public void setWriteAttribute(int attr)
@@ -304,7 +304,7 @@ public class TextDisplay implements Attributes
 		ASSERT.fatal ( (attr & MASK_CHAR) == 0, "TextDisplay", 286, "Illegal attribute");
 		writePage.setWriteAttribute(attr);
 	}
-	
+
 	/** ESC ! or ESC ' '
 	 */
 	public void setDisplayPage(int page)
@@ -317,7 +317,7 @@ public class TextDisplay implements Attributes
 		displayPage.forceDirty();
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC A
 	 */
 	public void moveCursorUp()
@@ -325,7 +325,7 @@ public class TextDisplay implements Attributes
 		writePage.cursorUp(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC C
 	 */
 	public void moveCursorRight()
@@ -333,7 +333,7 @@ public class TextDisplay implements Attributes
 		writePage.cursorRight(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC H
 	 */
 	public void home()
@@ -341,7 +341,7 @@ public class TextDisplay implements Attributes
 		writePage.home(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC F
 	 */
 	public void end()
@@ -349,7 +349,7 @@ public class TextDisplay implements Attributes
 		writePage.end(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC I
 	 */
 	public void clearPage()
@@ -359,7 +359,7 @@ public class TextDisplay implements Attributes
 		writePage.clearPage();
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC J
 	 */
 	public void clearToEnd()
@@ -367,7 +367,7 @@ public class TextDisplay implements Attributes
 		writePage.clearToEOP(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC I
 	 */
 	public void clearBlock(int startRow, int startCol, int endRow, int endCol)
@@ -375,7 +375,7 @@ public class TextDisplay implements Attributes
 		writePage.clearBlock(ppRemote, startRow, startCol, endRow, endCol);
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC K
 	 *  In block mode, erase the field.  In
 	 *  conversation mode, clear to end of line
@@ -385,14 +385,14 @@ public class TextDisplay implements Attributes
 		writePage.clearToEOL(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** 0x1D
 	 */
 	public void startField(int videoAttr, int dataAttr)
 	{
 		writeField(decodeVideoAttrs(videoAttr) | decodeDataAttrs(dataAttr) | ' ');
 	}
-	
+
 	/** ESC [
 	 */
 	public void startField(int videoAttr, int dataAttr, int keyAttr)
@@ -404,37 +404,37 @@ public class TextDisplay implements Attributes
 	{
 		return readBuffer(DAT_MDT, 0, startRow, startCol, endRow, endCol);
 	}
-	
+
 	public byte[] readBufferAllIgnoreMdt(int startRow, int startCol, int endRow, int endCol)
 	{
 		return readBuffer(0, 0, startRow, startCol, endRow, endCol);
 	}
-	
+
 	/** ESC - <
-	 * 
+	 *
 	 * PROTECT MODE
 	 *  Read all the unprotected fields in the block
 	 *
-	 * UNPROTECT MODE 
+	 * UNPROTECT MODE
 	 *  Return raw characters in the block
 	 */
 	public byte[] readBufferUnprotectIgnoreMdt(int startRow, int startCol, int endRow, int endCol)
 	{
 		return readBuffer(DAT_UNPROTECT, 0, startRow, startCol, endRow, endCol);
 	}
-	
+
 	public byte[] readBufferUnprotect(int startRow, int startCol, int endRow, int endCol)
 	{
 		return readBuffer(DAT_UNPROTECT | DAT_MDT, 0, startRow, startCol, endRow, endCol);
 	}
-	
+
 	private byte[] readBuffer(int reqMask, int forbidMask, int startRow, int startCol, int endRow, int endCol)
 	{
 		return writePage.readBuffer(ppRemote, reqMask, forbidMask, startRow, startCol, endRow, endCol);
 	}
-	
+
 	/** ESC ]
-	 * 
+	 *
 	 *  Read all the fields in the block (protected and unprotected)
 	 */
 	public byte[] readFieldsAll(int startRow, int startCol, int endRow, int endCol)
@@ -449,7 +449,7 @@ public class TextDisplay implements Attributes
 	{
 		writePage.resetMDTs();
 	}
-	
+
 	/** ESC O
 	 */
 	public void insertChar()
@@ -457,16 +457,16 @@ public class TextDisplay implements Attributes
 		writePage.insertChar(ppRemote);
 		requiresRepaint = true;
 	}
-		
+
 	/** ESC M
-	 */			
+	 */
 	public void setModeBlock()
 	{
 		blockMode = true;
 		exitProtectMode();
 		ppRemote = ppunProtectMode;
 	}
-	
+
 	public void setModeConv()
 	{
 		blockMode = false;
@@ -489,7 +489,7 @@ public class TextDisplay implements Attributes
 	{
 		numPages = count;
 	}
-	
+
 	/** ESC q
 	 */
 	public void init()
@@ -501,10 +501,10 @@ public class TextDisplay implements Attributes
 			pages[x] = new Page(numRows, numColumns);
 		}
 		displayPage = pages[0];
-		writePage = pages[0];		
+		writePage = pages[0];
 		requiresRepaint = true;
 	}
-	
+
 	public void writeStatus(String msg)
 	{
 		for (int x = 67; x < 80; x++)
@@ -516,7 +516,7 @@ public class TextDisplay implements Attributes
 	}
 
 	/** ESC o
-	 *  
+	 *
 	 */
 	public void writeMessage(String msg)
 	{
@@ -531,17 +531,17 @@ public class TextDisplay implements Attributes
 	public void initDataTypeTable()
 	{
 	}
-	
+
 	public int getNumColumns()
 	{
 		return numColumns;
 	}
-	
+
 	public int getNumRows()
 	{
 		return numRows;
 	}
-	
+
 	public int getCurrentPage()
 	{
 		for (int x = 0; x < pages.length; x++)
@@ -554,48 +554,48 @@ public class TextDisplay implements Attributes
 		ASSERT.fatal(false, "TextDisplay", 713, "Shouldn't get here");
 		return 1;
 	}
-	
+
 	public int getCursorCol()
 	{
 		return writePage.cursorPos.column + 1;
 	}
-	
+
 	public int getCursorRow()
 	{
 		return writePage.cursorPos.row + 1;
-	}	
+	}
 
 	public int getBufferCol()
 	{
 		return writePage.bufferPos.column + 1;
 	}
-	
+
 	public int getBufferRow()
 	{
 		return writePage.bufferPos.row + 1;
 	}
-	
+
 	public boolean getProtectMode()
 	{
 		return protectMode;
 	}
-	
+
 	public boolean getBlockMode()
 	{
 		return blockMode;
 	}
-	
+
 	public void setEchoOn()
 	{
 		echoOn = true;
 	}
-	
+
 	public void setEchoOff()
 	{
 		echoOn = false;
 	}
 
-	
+
 	/** ESC A
 	 */
 	void cursorUp()
@@ -603,7 +603,7 @@ public class TextDisplay implements Attributes
 		writePage.cursorUp(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** 0x0A
 	 */
 	void cursorDown()
@@ -611,7 +611,7 @@ public class TextDisplay implements Attributes
 		writePage.cursorDown(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC C
 	 */
 	void cursorRight()
@@ -619,7 +619,7 @@ public class TextDisplay implements Attributes
 		writePage.cursorRight(ppRemote);
 		requiresRepaint = true;
 	}
-	
+
 	/** ESC L
 	 */
 	public void lineDown()
@@ -635,24 +635,24 @@ public class TextDisplay implements Attributes
 	}
 
 	/** ESC O
-	 * 
+	 *
 	 *  Insert a space
 	 */
 	public void insert()
 	{
 		requiresRepaint = true;
 	}
-		
+
 	public String getStartFieldASCII()
 	{
 		return displayPage.getStartFieldASCII();
 	}
-	
+
 	private void writeField(int c)
 	{
 		writePage.writeField(c);
 	}
-	
+
 	/** ESC P
 	 * Delete a character at a given position on the screen.
 	 * All characters right to the position will be moved one to the left.
@@ -662,7 +662,7 @@ public class TextDisplay implements Attributes
 		writePage.deleteChar(ppRemote);
 		requiresRepaint = true;
 	}
-		
+
 	/** 0x08
 	 * PROTECT MODE
 	 *  Move to the start of the field.  If the cursor
@@ -676,7 +676,7 @@ public class TextDisplay implements Attributes
 	 * UNPROTECT MODE
 	 *  Move to previous tab.  If no prev tab exists
 	 *  on the current row, move to first column.  If
-	 *  already on first column, move to last tab on 
+	 *  already on first column, move to last tab on
 	 *  previous row.  If the cursor is in (1,1), move
 	 *  to the right most tab of the last row
 	 */
@@ -685,8 +685,8 @@ public class TextDisplay implements Attributes
 		writePage.cursorLeft(ppRemote);
 		requiresRepaint = true;
 	}
-	
-	
+
+
 	private final void clearAll()
 	{
 		for (int x = 0; x < pages.length; x++)
@@ -699,22 +699,22 @@ public class TextDisplay implements Attributes
 		}
 		requiresRepaint = true;
 	}
-	
-	
-		
+
+
+
 	public final void paint(PaintSurface ps)
 	{
 		displayPage.paint(ps, statusLine.toString());
 		requiresRepaint = false;
 	}
-			
+
 	private int decodeKeyAttrs(int attr)
 	{
 		int ret = 0;
 		if (attr == 0)
 		{
 			return 0;
-		}		
+		}
 		ASSERT.fatal ( (attr & (1<<6)) != 0, "TextDisplay", 367, "Invalid attribute format");
 		if ((attr & (1<<0)) != 0)
 		{
@@ -732,11 +732,11 @@ public class TextDisplay implements Attributes
 		{
 			ret |= KEY_EITHER;
 		}
-		if (ret == 0 && (ret & ~(1<<6)) != 0) 
+		if (ret == 0 && (ret & ~(1<<6)) != 0)
 			System.out.println("Unknown video attr " + attr);
 		return ret;
 	}
-	
+
 	private int decodeDataAttrs(int attr)
 	{
 		int ret = 0;
@@ -762,7 +762,7 @@ public class TextDisplay implements Attributes
 		ASSERT.fatal( (attr & ~((1<<6)|(1<<5)|(1<<4)|(1<<0)|(1<<1)|(1<<2)|(1<<3))) == 0, "TextDisplay", 737, "Unknown DAT attr");
 		return ret;
 	}
-	
+
 	private int decodeVideoAttrs(int attr)
 	{
 		int ret = 0;
@@ -771,7 +771,7 @@ public class TextDisplay implements Attributes
 			return 0;
 		}
 		//ASSERT.fatal ( (attr & (1<<5)) != 0, "TextDisplay", 367, "Invalid attribute format");
-		
+
 		if ((attr & (1<<0)) != 0)
 		{
 			ret |= VID_NORMAL;
@@ -792,10 +792,10 @@ public class TextDisplay implements Attributes
 		{
 			ret |= VID_UNDERLINE;
 		}
-		if ( (attr & ~((1<<5)|(1<<0)|(1<<1)|(1<<2)|(1<<3)|(1<<4))) != 0) 
+		if ( (attr & ~((1<<5)|(1<<0)|(1<<1)|(1<<2)|(1<<3)|(1<<4))) != 0)
 			System.out.println("Unknown video attr " + attr);
 		return ret;
-	}	
+	}
 
 	public void dumpScreen(java.io.PrintStream pw)
 	{
@@ -803,11 +803,11 @@ public class TextDisplay implements Attributes
 			return;
 		pw.println(dumpScreen());
 	}
-	
+
 	public String dumpScreen()
 	{
 		StringBuffer pw = new StringBuffer();
-		
+
 		for (int r = 0; r < displayPage.numRows; r++)
 		{
 			for (int c = 0; c < displayPage.numColumns; c++)
@@ -820,7 +820,7 @@ public class TextDisplay implements Attributes
 		pw.append("" + (char)13 + "" + (char)10);
 		return pw.toString();
 	}
-	
+
 	public String dumpAttibutes()
 	{
 		StringBuffer pw = new StringBuffer();
@@ -961,7 +961,7 @@ public class TextDisplay implements Attributes
 		int count = 0;
 		boolean cap = false;
 		StringBuffer accum = new StringBuffer();
-		
+
 		for (int r = 0; r < numRows; r++)
 		{
 			for (int c = 0; c < numColumns; c++)
@@ -985,7 +985,7 @@ public class TextDisplay implements Attributes
 		}
 		return accum.toString();
 	}
-	
+
 	/**
 	 *  Get the video, data, and key attributes for a
 	 *  field.
@@ -993,7 +993,7 @@ public class TextDisplay implements Attributes
 	public int getFieldAttributes(int index)
 	{
 		int count = 0;
-		
+
 		for (int r = 0; r < numRows; r++)
 		{
 			for (int c = 0; c < numColumns; c++)
@@ -1025,12 +1025,12 @@ public class TextDisplay implements Attributes
 	{
 		return displayPage.getCurrentField();
 	}
-	
+
 	/**
-	 *  Get the 'index'nth unprotected field on 
-	 *  the screen.  The first field is index 
-	 *  ZERO.  If the index is larger than the 
-	 *  number of field, an empty string is 
+	 *  Get the 'index'nth unprotected field on
+	 *  the screen.  The first field is index
+	 *  ZERO.  If the index is larger than the
+	 *  number of field, an empty string is
 	 *  returned.
 	 */
 	public String getUnprotectField(int index)
@@ -1038,7 +1038,7 @@ public class TextDisplay implements Attributes
 		int count = 0;
 		boolean cap = false;
 		StringBuffer accum = new StringBuffer();
-		
+
 		for (int r = 0; r < numRows; r++)
 		{
 			for (int c = 0; c < numColumns; c++)
@@ -1072,18 +1072,18 @@ public class TextDisplay implements Attributes
 		}
 		return accum.toString();
 	}
-	
+
 	/**
-	 *  Write text into the 'index'nth 
-	 *  unprotected field on the screen.  The 
-	 *  first field is index ZERO.  If the 
-	 *  index is larger than the number of field, 
+	 *  Write text into the 'index'nth
+	 *  unprotected field on the screen.  The
+	 *  first field is index ZERO.  If the
+	 *  index is larger than the number of field,
 	 *  the request is ignored.
 	 */
 	public void setField(int index, String text)
 	{
 		int count = 0;
-		
+
 		for (int r = 0; r < numRows; r++)
 		{
 			for (int c = 0; c < numColumns; c++)
@@ -1111,17 +1111,17 @@ public class TextDisplay implements Attributes
 			}
 		}
 	}
-	
+
 	/**
 	 *  Returns true if the 'index'nth unprotected
-	 *  field has its MDT set. The first field is 
-	 *  index ZERO.  If the index is larger than 
+	 *  field has its MDT set. The first field is
+	 *  index ZERO.  If the index is larger than
 	 *  the  number of fields, false is returned.
 	 */
 	public boolean isFieldChanged(int index)
 	{
 		int count = 0;
-		
+
 		for (int r = 0; r < numRows; r++)
 		{
 			for (int c = 0; c < numColumns; c++)
@@ -1147,9 +1147,9 @@ public class TextDisplay implements Attributes
 		}
 		return false;
 	}
-	
+
 	/**
-	 *  Get a full line of display text.  
+	 *  Get a full line of display text.
 	 */
 	public String getLine(int lineNumber)
 	{
@@ -1160,18 +1160,18 @@ public class TextDisplay implements Attributes
 		}
 		return sb.toString();
 	}
-	
+
 	/**
-	 *  Set the cursor at the start if the 
-	 *  'index'nth unprotected field on the screen.  
-	 *  The first field is index ZERO.  If the 
-	 *  index is larger than the number of field, 
+	 *  Set the cursor at the start if the
+	 *  'index'nth unprotected field on the screen.
+	 *  The first field is index ZERO.  If the
+	 *  index is larger than the number of field,
 	 *  the request is ignored.
 	 */
 	public void cursorToField(int index)
 	{
 		int count = 0;
-		
+
 		for (int r = 0; r < numRows; r++)
 		{
 			for (int c = 0; c < numColumns; c++)
@@ -1198,7 +1198,7 @@ public class TextDisplay implements Attributes
 			}
 		}
 	}
-	
+
 	/**
 	 *  ASP fun!! Not quite working yet.
 	 */
@@ -1208,10 +1208,10 @@ public class TextDisplay implements Attributes
 		String bgRGB = Integer.toHexString(bg.getRGB()).substring(2);
 		int fieldCount = 0;
 		boolean inUnprot = false;
-		
+
 		StringBuffer buf = new StringBuffer();
 		StringBuffer accum = new StringBuffer();
-		
+
 		// write the style and script
 		buf.append("<html>");
 		buf.append("<script language='javascript'>function keys(){if (event.keyCode < 112 || event.keyCode > 123) {event.returnValue=true;return;} event.cancelBubble=true; event.returnValue=false;var k = document.forms('screen')('hdnKey'); switch(event.keyCode){case 112: k.value = 'F1'; break; case 10: k.value = 'ENTER'; break;} document.forms('screen').submit();} function canxIt(){event.cancelBubble = true;event.returnValue = false;}</script>");
@@ -1226,15 +1226,15 @@ public class TextDisplay implements Attributes
 		buf.append(".blink { color: #" + fgRGB + "; background: #" + bgRGB + "; text-decoration: blink}");
 		buf.append(".blinkreverse { color: #" + bgRGB + "; background: #" + fgRGB + "; text-decoration: blink}");
 		buf.append("</style>\r\n");
-		
+
 		// write the table header
 		buf.append("<form id='screen' method='post'><input type='hidden' id='hdnKey' value='' /><table cols='80' width='100%' >");
-		
+
 		for (int r = 0; r < numRows; r++)
 		{
 			buf.append("<tr>");
 			int[] row = displayPage.mem[r];
-			
+
 			for (int c = 0; c < numColumns; c++)
 			{
 				int ch = row[c];
