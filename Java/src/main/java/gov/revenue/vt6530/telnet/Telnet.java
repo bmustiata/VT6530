@@ -8,7 +8,11 @@ import java.awt.Dimension;
 import java.util.Vector;
 import java.io.*;
 
+import javax.net.ssl.SSLSocketFactory;
+
 import gov.revenue.ASSERT;
+import gov.revenue.vt6530.Connection;
+import gov.revenue.vt6530.ConnectionFactory;
 
 /**
  *  Telnet implement RFC 854.  Most of this code was "reused" from
@@ -128,9 +132,7 @@ public class Telnet implements TelnetStateListener
 	 */
 	private byte[] sentWX;
 
-	private Socket socket;
-	private BufferedInputStream is;
-	private BufferedOutputStream os;
+	private Connection connection;
 
 	private TelnetStateListener peer = this;		/* peer, notified on status */
 
@@ -165,9 +167,9 @@ public class Telnet implements TelnetStateListener
 		{
 			System.out.println("Telnet.connect(" + address + "," + port + ")");
 		}
-		socket = new Socket(address, port);
-		is = new BufferedInputStream(socket.getInputStream());
-		os = new BufferedOutputStream(socket.getOutputStream());
+
+		connection = new ConnectionFactory(address, port).createConnection();
+
 		neg_state = 0;
 		receivedDX = new byte[256]; 
 		sentDX = new byte[256];
@@ -185,9 +187,9 @@ public class Telnet implements TelnetStateListener
 		{
 			System.out.println("TelnetIO.disconnect()");
 		}
-		if(socket !=null) 
+		if(connection !=null)
 		{
-			socket.close();
+			connection.close();
 		}
 		if (ASSERT.debug > 0)
 		{
@@ -223,7 +225,7 @@ public class Telnet implements TelnetStateListener
 	 */
 	public int available() throws IOException
 	{
-		return is.available();
+		return connection.getInputStream().available();
 	}
 	
 	int countx;
@@ -234,9 +236,9 @@ public class Telnet implements TelnetStateListener
 	 */
 	public byte[] receive() throws IOException 
 	{
-		int count = is.available();
+		int count = connection.getInputStream().available();
 		byte buf[] = new byte[count];
-		count = is.read(buf);
+		count = connection.getInputStream().read(buf);
 		if(count < 0) 
 		{
 			peer.message("Connection closed");
@@ -283,8 +285,8 @@ public class Telnet implements TelnetStateListener
 		{
 			System.out.println("TelnetIO.send(" + buf + ")");
 		}
-		os.write(buf);
-		os.flush();
+		connection.getOutputStream().write(buf);
+		connection.getOutputStream().flush();
 	}
 
 	public void send(byte b) throws IOException 
@@ -298,8 +300,8 @@ public class Telnet implements TelnetStateListener
 		{
 			System.out.println("TelnetIO.send(" + b + ")");
 		}
-		os.write(b);
-		os.flush();
+		connection.getOutputStream().write(b);
+		connection.getOutputStream().flush();
 	}
 
 	boolean sent34Wont = false;
@@ -307,7 +309,7 @@ public class Telnet implements TelnetStateListener
 	/**
 	 * Handle an incoming IAC SB <type> <bytes> IAC SE
 	 * @param type type of SB
-	 * @param sbata byte array as <bytes>
+	 * @param sbdata byte array as <bytes>
 	 * @param sbcount nr of bytes. may be 0 too.
 	 */
 	private void handle_sb(byte type, byte[] sbdata, int sbcount) 
