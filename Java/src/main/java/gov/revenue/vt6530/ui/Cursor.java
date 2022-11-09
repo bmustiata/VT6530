@@ -1,7 +1,5 @@
 package gov.revenue.vt6530.ui;
 
-import gov.revenue.ASSERT;
-
 /**
  *  Cursor holds the cursor or buffer position
  *  for a page.  

@@ -287,7 +287,7 @@ public final class Guardian implements Mode
 						case 'a':
 							// Read cursor address
 							{
-								byte[] cursorPos = {1, (byte)'_', (byte)'!', 0, 0, 13};
+								byte[] cursorPos = {1, '_', '!', 0, 0, 13};
 								cursorPos[3] = (byte)display.getCursorRow();
 								cursorPos[4] = (byte)display.getCursorCol();
 								telnet.send(cursorPos);

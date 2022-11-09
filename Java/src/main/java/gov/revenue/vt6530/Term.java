@@ -244,8 +244,11 @@ public class Term implements MappedKeyListener, TelnetStateListener, Runnable, P
 				}
 			}
 		}
-		catch (java.io.IOException ioe)
+		catch (java.io.IOException | RuntimeException ioe)
 		{
+			display.writeMessage("ERROR: " + ioe.getCause().getMessage());
+			dispatchDisplayChanged();
+
 			ioe.printStackTrace();
 			connected = false;
 		}

@@ -1,11 +1,7 @@
 package gov.revenue.vt6530.ui;
 
-import java.awt.Container;
-import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
-import java.util.Hashtable;
-
-import gov.revenue.vt6530.FastVector;
+import java.awt.event.KeyListener;
 
 /**
  *  Keys performs mapping of keystokes to terminal
@@ -29,7 +25,8 @@ public class Keys implements KeyListener
 	public static final String NAK = "" + (char)21;
 	public static final String ESC = "" + (char)27;
 	public static final String CR = "" + (char)13;
-	
+
+	// they map to indexes in plain
 	private static final int SPC_F1 = 0;
 	private static final int SPC_F2 = 1;
 	private static final int SPC_F3 = 2;
@@ -38,10 +35,14 @@ public class Keys implements KeyListener
 	private static final int SPC_F6 = 5;
 	private static final int SPC_F7 = 6;
 	private static final int SPC_F8 = 7;
-	private static final int SPC_F9 = 11;
-	private static final int SPC_F10 = 12;
-	private static final int SPC_F11 = 14;
-	private static final int SPC_F12 = 15;
+	private static final int SPC_F9 = 8;
+	private static final int SPC_F10 = 9;
+	private static final int SPC_F11 = 10;
+	private static final int SPC_F12 = 11;
+	private static final int SPC_F13 = 12;
+	private static final int SPC_F14 = 13;
+	private static final int SPC_F15 = 14;
+	private static final int SPC_F16 = 15;
 	public static final int SPC_BREAK = 16;
 	static final int SPC_PGUP = 17;
 	static final int SPC_PGDN = 18;
@@ -332,7 +333,7 @@ public class Keys implements KeyListener
 			keyAction(fn, pressedKey, keyCode, modifiers);
 		}
 	}
-	
+
 	public void keyTyped( KeyEvent e )
 	{
 		int keyCode = e.getKeyCode();
@@ -361,7 +362,28 @@ public class Keys implements KeyListener
 		boolean mctrl = (KeyEvent.CTRL_MASK & modifiers) != 0;
 		boolean mshift = (KeyEvent.SHIFT_MASK & modifiers) != 0;
 		boolean malt = (KeyEvent.ALT_MASK & modifiers) != 0;
-		
+
+		// FIXME: keybindings should be in a different place, so we can have them configurable
+		if (pressedKey == SPC_F1 && mshift) {
+			pressedKey = SPC_F13;
+			mshift = false;
+		}
+
+		if (pressedKey == SPC_F2 && mshift) {
+			pressedKey = SPC_F14;
+			mshift = false;
+		}
+
+		if (pressedKey == SPC_F3 && mshift) {
+			pressedKey = SPC_F15;
+			mshift = false;
+		}
+
+		if (pressedKey == SPC_F4 && mshift) {
+			pressedKey = SPC_F16;
+			mshift = false;
+		}
+
 		if (fn && mshift && malt)
 		{
 			if (sendCursorWithFn)
@@ -922,8 +944,9 @@ public class Keys implements KeyListener
 						0,0,0,0,0,0,0,0,0,0
 						};
 
-	private String[] plainFn = {"@", "A", "B", "C", "D", "E", "F", "G", "", "", "", "H", "I", "", "J", "K"};
-	private String[] shiftFn = {"'", "a", "b", "c", "d", "e", "f", "g", "", "", "", "h", "i", "", "j", "k"};
+	//                          F1   F2   F3   F4   F5   F6   F7   F8   F9   F10  F11  F12  F13  F14  F15  F16
+	private String[] plainFn = {"@", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"};
+	private String[] shiftFn = {"'", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"};
 	
 	// array to store DEC Special -> Unicode mapping
 	//  Unicode   DEC  Unicode name    (DEC name)
